@@ -1,0 +1,40 @@
+﻿<Page x:Class="medical_analysis_clinic.ServicesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:medical_analysis_clinic"
+      mc:Ignorable="d" 
+      d:DesignHeight="588" d:DesignWidth="922"
+      Title="ServicesPage">
+
+    <Grid Background="GhostWhite">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="500"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Expander Margin="0,0,0,294" Grid.Row="1" Header="Обследования">
+            <StackPanel>
+                <Button Background="Yellow" Foreground="Black" Content="Анализ кала"></Button>
+                <Button Background="Yellow" Foreground="Black" Content="Анализ кала"></Button>
+                <Button Background="Yellow" Foreground="Black" Content="Анализ кала"></Button>
+                <Button Background="Yellow" Foreground="Black" Content="Анализ кала"></Button>
+                <Button Background="Yellow" Foreground="Black" Content="Анализ кала"></Button>
+            </StackPanel>
+        </Expander>
+
+        <TextBlock Grid.Column="1" Text="Все услуги" FontSize="50" HorizontalAlignment="Center" />
+        <TextBlock Name="TextBlockWithHyperlink" FontSize="22">
+        <Hyperlink FontSize="22"
+            NavigateUri="http://somesite.example"
+            RequestNavigate="Hyperlink_RequestNavigate">
+            Главная
+        </Hyperlink>
+    - Все услуги
+        </TextBlock>
+    </Grid>
+</Page>

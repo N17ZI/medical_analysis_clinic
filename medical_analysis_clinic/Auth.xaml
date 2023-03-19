@@ -1,0 +1,33 @@
+﻿<Page x:Class="medical_analysis_clinic.Auth"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:medical_analysis_clinic"
+      mc:Ignorable="d" 
+      d:DesignHeight="588" d:DesignWidth="922"
+      Title="Auth">
+
+    <Grid Background="MediumSpringGreen" Height="588" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="922" Margin="0,0,0,-8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="250"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="450"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Frame Name="mainFrame"  NavigationUIVisibility="Hidden" Height="588" Width="922" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
+        <TextBox Margin="28,106,28,87" Grid.Column="1" Grid.Row="1"/>
+        <TextBox Grid.Row="1" Margin="28,29,28,165" Visibility="Visible" Name="pwdTextBox" Grid.Column="1"/>
+
+        <PasswordBox Name="pwdPasswordBox" Margin="28,106,28,87" Grid.Column="1" Grid.Row="1"/>
+        <Button Margin="28,184,28,20" Grid.Row="1" Content="Войти" Grid.Column="1"/>
+        <CheckBox Grid.Column="1" Grid.Row="1" Margin="388,114,28,95" Name="eventVisible" Click="eventVisible_Click"/>
+        <TextBlock Margin="28,9,174,221" Grid.Column="1" Grid.Row="1">Логин</TextBlock>
+        <TextBlock Grid.Column="1" Margin="28,85,50,149" Grid.Row="1"><Run Text="Пароль"/></TextBlock>
+        <TextBlock Margin="104,163,104,63" Grid.Row="1" Grid.Column="1"><Run Text="Нет учетной записи? "/><Hyperlink Click="Hyperlink_Click">Зарегистрируйтесь!</Hyperlink></TextBlock>
+    </Grid>
+</Page>
