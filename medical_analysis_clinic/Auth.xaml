@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:medical_analysis_clinic"
       mc:Ignorable="d" 
       d:DesignHeight="588" d:DesignWidth="922"
@@ -20,14 +21,12 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Frame Name="mainFrame"  NavigationUIVisibility="Hidden" Height="588" Width="922" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
-        <TextBox Margin="28,106,28,87" Grid.Column="1" Grid.Row="1"/>
-        <TextBox Grid.Row="1" Margin="28,29,28,165" Visibility="Visible" Name="pwdTextBox" Grid.Column="1"/>
+        <TextBox Margin="28,28,28,165" Grid.Column="1" Grid.Row="1" materialDesign:HintAssist.Hint="Логин" x:Name="LoginBox"/>
+        <TextBox Grid.Row="1" Margin="0,114,0,87" Visibility="Hidden" Name="pwdTextBox" Grid.Column="1" materialDesign:HintAssist.Hint="Пароль" HorizontalAlignment="Center" Width="394"/>
 
-        <PasswordBox Name="pwdPasswordBox" Margin="28,106,28,87" Grid.Column="1" Grid.Row="1"/>
-        <Button Margin="28,184,28,20" Grid.Row="1" Content="Войти" Grid.Column="1"/>
-        <CheckBox Grid.Column="1" Grid.Row="1" Margin="388,114,28,95" Name="eventVisible" Click="eventVisible_Click"/>
-        <TextBlock Margin="28,9,174,221" Grid.Column="1" Grid.Row="1">Логин</TextBlock>
-        <TextBlock Grid.Column="1" Margin="28,85,50,149" Grid.Row="1"><Run Text="Пароль"/></TextBlock>
+        <PasswordBox Name="pwdPasswordBox" Margin="28,125,28,87" Grid.Column="1" Grid.Row="1" materialDesign:HintAssist.Hint="Пароль" />
+        <Button Margin="28,184,28,20" Grid.Row="1" Content="Войти" Grid.Column="1" Click="AuthButton"/>
+        <CheckBox Grid.Column="1" Grid.Row="1" Margin="388,114,28,95" Name="eventVisible" Click="eventVisible_Click" />
         <TextBlock Margin="104,163,104,63" Grid.Row="1" Grid.Column="1"><Run Text="Нет учетной записи? "/><Hyperlink Click="Hyperlink_Click">Зарегистрируйтесь!</Hyperlink></TextBlock>
     </Grid>
 </Page>

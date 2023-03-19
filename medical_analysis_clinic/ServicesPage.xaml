@@ -30,8 +30,7 @@
         <TextBlock Grid.Column="1" Text="Все услуги" FontSize="50" HorizontalAlignment="Center" />
         <TextBlock Name="TextBlockWithHyperlink" FontSize="22">
         <Hyperlink FontSize="22"
-            NavigateUri="http://somesite.example"
-            RequestNavigate="Hyperlink_RequestNavigate">
+            NavigateUri="http://somesite.example" TextDecorations="None">
             Главная
         </Hyperlink>
     - Все услуги

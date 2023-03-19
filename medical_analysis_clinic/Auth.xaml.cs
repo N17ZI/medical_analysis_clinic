@@ -1,4 +1,5 @@
-﻿using System;
+﻿using medical_analysis_clinic.Scripts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,7 @@ namespace medical_analysis_clinic
         {
             InitializeComponent();
         }
-
+        public static string password;
         private void eventVisible_Click(object sender, RoutedEventArgs e)
         {
             var checkBox = sender as CheckBox;
@@ -45,6 +46,20 @@ namespace medical_analysis_clinic
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new RegisterPage());
+        }
+
+        private void AuthButton(object sender, RoutedEventArgs e)
+        {
+            if(LoginBox.Text != null)
+            {
+                string passwordInput = pwdPasswordBox.Password;
+                ControllerDataBase.name = LoginBox.Text;
+                ControllerDataBase.FindAll();
+                if(pwdPasswordBox != null && password == passwordInput)
+                {
+                    NavigationService.Navigate(new ServicesPage());
+                }
+            }
         }
     }
 }
