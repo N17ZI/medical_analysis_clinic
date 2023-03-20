@@ -17,23 +17,43 @@
             <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Expander Margin="0,0,0,294" Grid.Row="1" Header="Обследования">
-            <StackPanel>
-                <Button Background="Yellow" Foreground="Black" Content="Анализ кала"></Button>
-                <Button Background="Yellow" Foreground="Black" Content="Анализ кала"></Button>
-                <Button Background="Yellow" Foreground="Black" Content="Анализ кала"></Button>
-                <Button Background="Yellow" Foreground="Black" Content="Анализ кала"></Button>
-                <Button Background="Yellow" Foreground="Black" Content="Анализ кала"></Button>
-            </StackPanel>
-        </Expander>
 
-        <TextBlock Grid.Column="1" Text="Все услуги" FontSize="50" HorizontalAlignment="Center" />
-        <TextBlock Name="TextBlockWithHyperlink" FontSize="22">
-        <Hyperlink FontSize="22"
+        <TextBlock Grid.Column="1" Text="Все услуги" FontSize="50" HorizontalAlignment="Center" Width="250" />
+        <StackPanel Background="LightSeaGreen">
+            <TextBlock Name="TextBlockWithHyperlink" FontSize="22">
+            <Hyperlink FontSize="22"
             NavigateUri="http://somesite.example" TextDecorations="None">
             Главная
         </Hyperlink>
-    - Все услуги
-        </TextBlock>
+         - Все услуги
+            </TextBlock>
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="1" Background="DarkSeaGreen">
+            <Expander Header="Обследование" Background="DarkOliveGreen">
+                <StackPanel>
+                    <Button HorizontalContentAlignment="Left" Background="ForestGreen">Анализ ДНК</Button>
+                    <Button HorizontalContentAlignment="Left" Background="ForestGreen">Анализ Кала</Button>
+                    <Button HorizontalContentAlignment="Left" Background="ForestGreen">Анализ Крови</Button>
+                    <Button HorizontalContentAlignment="Left" Background="ForestGreen">Анализ Мочи</Button>
+                    <Button HorizontalContentAlignment="Left" Background="ForestGreen">Анализ на гармоны</Button>
+                </StackPanel>
+            </Expander>
+            <Expander Header="УЗИ"  Background="DarkOliveGreen">
+                <StackPanel>
+                    <Button HorizontalContentAlignment="Left" Background="ForestGreen">УЗИ сердца</Button>
+                    <Button HorizontalContentAlignment="Left" Background="ForestGreen">УЗИ почек</Button>
+                    <Button HorizontalContentAlignment="Left" Background="ForestGreen">УЗИ брюшной полости</Button>
+                    <Button HorizontalContentAlignment="Left" Background="ForestGreen">УЗИ простаты</Button>
+                    <Button HorizontalContentAlignment="Left" Background="ForestGreen">УЗИ мочевого пузыря</Button>
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <TextBlock ></TextBlock>
+            
+        </StackPanel>
     </Grid>
 </Page>

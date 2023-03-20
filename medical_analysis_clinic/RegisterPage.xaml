@@ -19,8 +19,9 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        <TextBlock FontSize="14" Margin="307,83,0,82" Visibility="Visible" HorizontalAlignment="Left" Grid.ColumnSpan="3">Пользователь с такой же почтой уже существует</TextBlock>
         <TextBlock Margin="10,52,46,124" FontSize="11" Grid.Row="2" Grid.Column="1">Я согласен на <Hyperlink>обработку персональных данных</Hyperlink></TextBlock>
-        <CheckBox Grid.Column="1" Margin="267,52,22,124" Grid.Row="2" Name="Agree"/>
+        <CheckBox Grid.Column="1" Margin="267,47,10,119" Grid.Row="2" Name="Agree" RenderTransformOrigin="0.319,0.522"/>
         <Button Margin="10,77,10,68" Grid.Row="2" Content="Зарегистрироваться!" Grid.Column="1" Click="BRegister_Click" Background="GreenYellow"/>
         <TextBox Margin="10,10,10,149" Grid.Row="2" Grid.Column="1" x:Name="Password" materialDesign:HintAssist.Hint="Подтверждение пароля"/>
         <TextBox Margin="10,149,10,10" Grid.Row="1" Grid.Column="1" x:Name="Password1" materialDesign:HintAssist.Hint="Пароль"/>

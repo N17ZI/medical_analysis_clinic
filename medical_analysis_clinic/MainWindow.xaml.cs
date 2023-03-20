@@ -23,7 +23,7 @@ namespace medical_analysis_clinic
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Content = new Auth();
+            MainFrame.Content = new ServicesPage();
         }
     }
 }

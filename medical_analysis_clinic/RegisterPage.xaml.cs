@@ -25,12 +25,17 @@ namespace medical_analysis_clinic
         {
             InitializeComponent();
         }
-
+        public static bool AlreadyUser = false;
         private void BRegister_Click(object sender, RoutedEventArgs e)
         {
-            if(Password.Text == Password1.Text && (bool)Agree.IsChecked)
+            if(Password.Text == Password1.Text && (bool)Agree.IsChecked) // Проверка на совпадение паролей и нажатой галочки
             {
-                CreateNewClient(SurnameBox.Text, Name.Text, EmailBox.Text, Password.Text);
+                ControllerDataBase.FindAlreadyClients(EmailBox.Text); // Найти существующего пользователя по почте
+                if (AlreadyUser)
+                {
+                    CreateNewClient(SurnameBox.Text, Name.Text, EmailBox.Text, Password.Text); // Вызов метода
+                }
+                AlreadyUser = false; // Возврат по умолчанию
             }
         }
         public void CreateNewClient(string Surname, string Name, string Email, string Password)

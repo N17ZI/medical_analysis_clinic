@@ -4,20 +4,38 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:medical_analysis_clinic"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="588" d:DesignWidth="922"
       Title="AccountPage">
 
     <Grid Background="MediumSpringGreen">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="500"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <TextBlock Margin="99,51,463,362" FontSize="22">Персональные данные</TextBlock>
+        <TextBlock Grid.Column="1" Text="Персональные данные" FontSize="40" HorizontalAlignment="Center"/>
 
-        <TextBox Margin="10,93,582,314"></TextBox>
-        <TextBox Margin="223,93,369,314"/>
-        <TextBox Margin="10,152,582,255"/>
-        <ComboBox Margin="10,251,582,156"/>
-        <TextBox Margin="10,204,582,204"/>
-        <TextBox Margin="223,204,369,203"/>
-        <TextBox Margin="223,251,369,156"/>
+        <StackPanel Margin="0,0,0,8" Grid.Row="1">
+            <Button Height="45"/>
+            <Button Height="45"/>
+            <Button Height="45"/>
+        </StackPanel>
+
+        <TextBox Grid.Column="1" Margin="211,10,247,434" Grid.Row="1" materialDesign:HintAssist.Hint="Фамилия"/>
+        <TextBox Grid.Column="1" Margin="448,10,10,434" Grid.Row="1" materialDesign:HintAssist.Hint="Имя"/>
+        <TextBox Grid.Column="1" Margin="211,71,247,373" Grid.Row="1" materialDesign:HintAssist.Hint="Почта"/>
+        <TextBox Grid.Column="1" Margin="448,71,10,373" Grid.Row="1" materialDesign:HintAssist.Hint="Пол"/>
+        <TextBox Grid.Column="1" Margin="211,133,247,311" Grid.Row="1" materialDesign:HintAssist.Hint="Дата рождения"/>
+        <TextBox Grid.Column="1" Margin="448,133,10,311" Grid.Row="1" materialDesign:HintAssist.Hint="СНИЛС"/>
+        <TextBox Grid.Column="1" Margin="211,194,247,250" Grid.Row="1" materialDesign:HintAssist.Hint="Текущий пароль"/>
+        <TextBox Grid.Column="1" Margin="448,194,10,250" Grid.Row="1" materialDesign:HintAssist.Hint="Новый пароль"/>
+
+        <Button Grid.Column="1" Margin="292,291,88,177" Grid.Row="1" Content="Сохранить изменения"></Button>
     </Grid>
 </Page>

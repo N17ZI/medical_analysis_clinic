@@ -27,6 +27,6 @@
         <PasswordBox Name="pwdPasswordBox" Margin="28,125,28,87" Grid.Column="1" Grid.Row="1" materialDesign:HintAssist.Hint="Пароль" />
         <Button Margin="28,184,28,20" Grid.Row="1" Content="Войти" Grid.Column="1" Click="AuthButton"/>
         <CheckBox Grid.Column="1" Grid.Row="1" Margin="388,114,28,95" Name="eventVisible" Click="eventVisible_Click" />
-        <TextBlock Margin="104,163,104,63" Grid.Row="1" Grid.Column="1"><Run Text="Нет учетной записи? "/><Hyperlink Click="Hyperlink_Click">Зарегистрируйтесь!</Hyperlink></TextBlock>
+        <TextBlock Margin="104,163,104,63" Grid.Row="1" Grid.Column="1"><Run Text="Нет учетной записи? "/><Hyperlink Click="Hyperlink_Click" TextDecorations="None">Зарегистрируйтесь!</Hyperlink></TextBlock>
     </Grid>
 </Page>

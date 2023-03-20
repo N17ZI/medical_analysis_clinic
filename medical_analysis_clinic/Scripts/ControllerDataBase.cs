@@ -14,12 +14,17 @@ namespace medical_analysis_clinic.Scripts
     public class ControllerDataBase
     {
         public static string name;
+        public static string Email;
         static MongoClient client = new MongoClient();
         static IMongoDatabase database = client.GetDatabase("Clinic");
         static IMongoCollection<Client> collection = database.GetCollection<Client>("Client");
         public static void AddToDB(Client client)
         {
-            collection.InsertOne(client);
+            FindAlreadyClients(Email);
+            if (RegisterPage.AlreadyUser)
+            {
+                collection.InsertOne(client);
+            }
         }
         public static void FindOne(string name)
         {
@@ -34,6 +39,14 @@ namespace medical_analysis_clinic.Scripts
                 {
                     Auth.password =  item.Password;
                 }
+            }
+        }
+        public static void FindAlreadyClients(string email)
+        {
+            var one = collection.Find(x => x.Email == email).FirstOrDefault();
+            if(one == null)
+            {
+                RegisterPage.AlreadyUser = true;
             }
         }
     }
