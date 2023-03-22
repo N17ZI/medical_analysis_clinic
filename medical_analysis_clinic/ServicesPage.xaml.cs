@@ -23,6 +23,40 @@ namespace medical_analysis_clinic
         public ServicesPage()
         {
             InitializeComponent();
+            GenerateButtons();
+        }
+        DateTime date1 = new DateTime();
+        public void GenerateButtons()
+        {
+            TextBlock nowDay = new TextBlock();
+            nowDay.TextWrapping = TextWrapping.Wrap;
+            nowDay.HorizontalAlignment = HorizontalAlignment.Center;
+            nowDay.Text = DateTime.Now.ToString("dd MMMM,dddd yyyy");
+            DatePick.Children.Add(nowDay);
+            
+            for (int i = 0; i < 7; i++)
+            {
+                Button newBtn = new Button();
+                newBtn.FontSize = 16;
+                newBtn.Height = 75;
+                newBtn.Width = 75;
+                
+                
+                newBtn.HorizontalContentAlignment = HorizontalAlignment.Center;
+                newBtn.Name = "Button" + i.ToString();
+                
+                newBtn.VerticalAlignment = VerticalAlignment.Top;
+                newBtn.Content = DateTime.Now.AddMinutes(10 * i).ToShortTimeString();
+
+
+                newBtn.Click += GetTicketForMed;
+                DatePick.Children.Add(newBtn);
+            }
+        }
+
+        private void GetTicketForMed(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

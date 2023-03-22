@@ -51,8 +51,7 @@
             </Expander>
         </StackPanel>
 
-        <StackPanel Grid.Column="1" Grid.Row="1">
-            <TextBlock ></TextBlock>
+        <StackPanel Grid.Column="1" Grid.Row="1" x:Name="DatePick" Orientation="Horizontal" VerticalAlignment="Top" Height="500" HorizontalAlignment="Left">
             
         </StackPanel>
     </Grid>
