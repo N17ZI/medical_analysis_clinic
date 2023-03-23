@@ -13,6 +13,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ToastNotifications.Messages;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Position;
 
 namespace medical_analysis_clinic
 {
@@ -34,14 +38,35 @@ namespace medical_analysis_clinic
                 if (AlreadyUser)
                 {
                     CreateNewClient(SurnameBox.Text, Name.Text, EmailBox.Text, Password.Text); // Вызов метода
+
+                }
+                else
+                {
+                    Notifier notifier = new Notifier(cfg =>
+                    {
+                        cfg.PositionProvider = new WindowPositionProvider(
+                            parentWindow: Application.Current.MainWindow,
+                            corner: Corner.TopRight,
+                            offsetX: 10,
+                            offsetY: 10);
+
+                        cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                            notificationLifetime: TimeSpan.FromSeconds(3),
+                            maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+                        cfg.Dispatcher = Application.Current.Dispatcher;
+                    });
+                    notifier.ShowWarning("Пользователь с такой почтой уже существует.");
                 }
                 AlreadyUser = false; // Возврат по умолчанию
+                
             }
         }
         public void CreateNewClient(string Surname, string Name, string Email, string Password)
         {
             Client client = new Client(Surname, Name, Email, Password);
             ControllerDataBase.AddToDB(client);
+            NavigationService.Navigate(new Auth());
         }
     }
 }

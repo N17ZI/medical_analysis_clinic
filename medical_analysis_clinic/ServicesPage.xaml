@@ -51,8 +51,9 @@
             </Expander>
         </StackPanel>
 
-        <StackPanel Grid.Column="1" Grid.Row="1" x:Name="DatePick" Orientation="Horizontal" VerticalAlignment="Top" Height="500" HorizontalAlignment="Left">
-            
+        <StackPanel Grid.Column="1" Grid.Row="1"  Orientation="Horizontal" VerticalAlignment="Center" Height="500" HorizontalAlignment="Center" Width="672">
+            <StackPanel x:Name="DatePick1"  Height="148" Width="665" Orientation="Horizontal" Margin="0,-290,0,0"/>
+            <WrapPanel Width="667" x:Name="DatePick" Height="27" Orientation="Horizontal" Margin="-660,-474,0,0"/>
         </StackPanel>
     </Grid>
 </Page>

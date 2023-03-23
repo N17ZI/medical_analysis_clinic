@@ -22,9 +22,9 @@
         <TextBlock Grid.Column="1" Text="Персональные данные" FontSize="40" HorizontalAlignment="Center"/>
 
         <StackPanel Margin="0,0,0,8" Grid.Row="1">
-            <Button Height="45"/>
-            <Button Height="45"/>
-            <Button Height="45"/>
+            <Button Height="45" Click="PersonalData" Content="Личные данные"/>
+            <Button Height="45" Content="Мои записи" Click="MyRecords"/>
+            <Button Height="45" Content="Выйти из уч.записи" Click="ExitFromAcc" Cursor="Hand"/>
         </StackPanel>
 
         <TextBox Grid.Column="1" Margin="211,10,247,434" Grid.Row="1" materialDesign:HintAssist.Hint="Фамилия"/>

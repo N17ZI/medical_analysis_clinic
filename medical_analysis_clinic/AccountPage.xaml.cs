@@ -25,5 +25,18 @@ namespace medical_analysis_clinic
         {
             InitializeComponent();
         }
+
+        private void PersonalData(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void MyRecords(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void ExitFromAcc(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -13,6 +13,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ToastNotifications.Messages;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Position;
 
 namespace medical_analysis_clinic
 {
@@ -50,7 +54,21 @@ namespace medical_analysis_clinic
 
         private void AuthButton(object sender, RoutedEventArgs e)
         {
-            if(LoginBox.Text != null)
+            Notifier notifier = new Notifier(cfg =>
+            {
+                cfg.PositionProvider = new WindowPositionProvider(
+                    parentWindow: Application.Current.MainWindow,
+                    corner: Corner.TopRight,
+                    offsetX: 10,
+                    offsetY: 10);
+
+                cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                    notificationLifetime: TimeSpan.FromSeconds(3),
+                    maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+                cfg.Dispatcher = Application.Current.Dispatcher;
+            });
+            if (LoginBox.Text != null)
             {
                 string passwordInput = pwdPasswordBox.Password;
                 ControllerDataBase.name = LoginBox.Text;
@@ -58,6 +76,10 @@ namespace medical_analysis_clinic
                 if(pwdPasswordBox != null && password == passwordInput)
                 {
                     NavigationService.Navigate(new ServicesPage());
+                }
+                else
+                {
+                    notifier.ShowWarning("Неправильный Логин/Пароль!");
                 }
             }
         }
