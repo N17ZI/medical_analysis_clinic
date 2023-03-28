@@ -19,7 +19,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Column="1" Text="Персональные данные" FontSize="40" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Column="1" x:Name="TopText" Text="Персональные данные" FontSize="40" HorizontalAlignment="Center"/>
 
         <StackPanel Margin="0,0,0,8" Grid.Row="1">
             <Button Height="45" Click="PersonalData" Content="Личные данные"/>
@@ -27,15 +27,20 @@
             <Button Height="45" Content="Выйти из уч.записи" Click="ExitFromAcc" Cursor="Hand"/>
         </StackPanel>
 
-        <TextBox Grid.Column="1" Margin="211,10,247,434" Grid.Row="1" materialDesign:HintAssist.Hint="Фамилия"/>
-        <TextBox Grid.Column="1" Margin="448,10,10,434" Grid.Row="1" materialDesign:HintAssist.Hint="Имя"/>
-        <TextBox Grid.Column="1" Margin="211,71,247,373" Grid.Row="1" materialDesign:HintAssist.Hint="Почта"/>
-        <TextBox Grid.Column="1" Margin="448,71,10,373" Grid.Row="1" materialDesign:HintAssist.Hint="Пол"/>
-        <TextBox Grid.Column="1" Margin="211,133,247,311" Grid.Row="1" materialDesign:HintAssist.Hint="Дата рождения"/>
-        <TextBox Grid.Column="1" Margin="448,133,10,311" Grid.Row="1" materialDesign:HintAssist.Hint="СНИЛС"/>
-        <TextBox Grid.Column="1" Margin="211,194,247,250" Grid.Row="1" materialDesign:HintAssist.Hint="Текущий пароль"/>
-        <TextBox Grid.Column="1" Margin="448,194,10,250" Grid.Row="1" materialDesign:HintAssist.Hint="Новый пароль"/>
+        <StackPanel Visibility="Hidden" Grid.Column="1" Margin="0,0,10,-1" Grid.Row="1" x:Name="PersonalDataPanel">
+            <TextBox materialDesign:HintAssist.Hint="Фамилия" x:Name="Surname"/>
+            <TextBox materialDesign:HintAssist.Hint="Имя" x:Name="Name"/>
+            <TextBox materialDesign:HintAssist.Hint="Почта" x:Name="Email"/>
+            <TextBox materialDesign:HintAssist.Hint="Пол" x:Name="Gender"/>
+            <TextBox materialDesign:HintAssist.Hint="Дата рождения" x:Name="Birthday"/>
+            <TextBox materialDesign:HintAssist.Hint="СНИЛС" x:Name="Snils"/>
+            <TextBox materialDesign:HintAssist.Hint="Текущий пароль" x:Name="CurrentPas"/>
+            <TextBox materialDesign:HintAssist.Hint="Новый пароль" x:Name="NewPas"/>
+            <Button Content="Сохранить изменения" Click="SaveButton_Click"/>
+        </StackPanel>
 
-        <Button Grid.Column="1" Margin="292,291,88,177" Grid.Row="1" Content="Сохранить изменения"></Button>
+        <StackPanel x:Name="MyRecordsPanel" Grid.Column="1" Margin="0,0,0,-1" Grid.Row="1" Orientation="Horizontal">
+            
+        </StackPanel>
     </Grid>
 </Page>

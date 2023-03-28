@@ -75,6 +75,10 @@ namespace medical_analysis_clinic
                 btn.Visibility = Visibility.Collapsed;
             }
         }
-        
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AccountPage());
+        }
     }
 }

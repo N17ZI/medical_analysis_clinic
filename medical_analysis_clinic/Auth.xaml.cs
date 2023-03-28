@@ -30,6 +30,7 @@ namespace medical_analysis_clinic
             InitializeComponent();
         }
         public static string password;
+        public static bool VerifyLog = false;
         private void eventVisible_Click(object sender, RoutedEventArgs e)
         {
             var checkBox = sender as CheckBox;
@@ -76,6 +77,7 @@ namespace medical_analysis_clinic
                 if(pwdPasswordBox != null && password == passwordInput)
                 {
                     NavigationService.Navigate(new ServicesPage());
+                    VerifyLog = true;
                 }
                 else
                 {

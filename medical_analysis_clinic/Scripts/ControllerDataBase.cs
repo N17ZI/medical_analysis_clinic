@@ -30,6 +30,10 @@ namespace medical_analysis_clinic.Scripts
         {
             var one = collection.Find(x => x.Name == name).FirstOrDefault();
         }
+        public static void ReplaceByName(string name, Client client)
+        {
+            collection.ReplaceOne(x => x.Name == name, client);
+        }
         public static void FindAll()
         {
             var list = collection.Find(x => true).ToList();

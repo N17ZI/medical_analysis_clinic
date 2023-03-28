@@ -22,7 +22,7 @@
         <StackPanel Background="LightSeaGreen">
             <TextBlock Name="TextBlockWithHyperlink" FontSize="22">
             <Hyperlink FontSize="22"
-            NavigateUri="http://somesite.example" TextDecorations="None">
+            Click="Hyperlink_Click" TextDecorations="None">
             Главная
         </Hyperlink>
          - Все услуги

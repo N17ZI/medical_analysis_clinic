@@ -28,13 +28,23 @@ namespace medical_analysis_clinic
 
         private void PersonalData(object sender, RoutedEventArgs e)
         {
-
+            MyRecordsPanel.Visibility = Visibility.Collapsed;
+            PersonalDataPanel.Visibility = Visibility.Visible;
+            TopText.Text = "Персональные данные";
         }
         private void MyRecords(object sender, RoutedEventArgs e)
         {
-
+            PersonalDataPanel.Visibility = Visibility.Collapsed;
+            MyRecordsPanel.Visibility = Visibility.Visible;
+            TopText.Text = "Мои записи";
         }
         private void ExitFromAcc(object sender, RoutedEventArgs e)
+        {
+            Auth.VerifyLog = false;
+            NavigationService.Navigate(new Auth());
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
 
         }

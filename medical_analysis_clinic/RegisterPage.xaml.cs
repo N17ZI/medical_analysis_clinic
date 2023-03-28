@@ -38,7 +38,6 @@ namespace medical_analysis_clinic
                 if (AlreadyUser)
                 {
                     CreateNewClient(SurnameBox.Text, Name.Text, EmailBox.Text, Password.Text); // Вызов метода
-
                 }
                 else
                 {
