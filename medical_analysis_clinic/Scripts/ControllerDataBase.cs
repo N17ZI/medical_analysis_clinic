@@ -1,18 +1,15 @@
-﻿using MongoDB.Driver;
+﻿using medical_analysis_clinic.Models;
+using MongoDB.Driver;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Navigation;
-using System.Xml.Linq;
+using System.Text.RegularExpressions;
 
 namespace medical_analysis_clinic.Scripts
 {
 
-    public class ControllerDataBase
+    internal class ControllerDataBase
     {
+        public static string s;
         public static string name;
         public static string Email;
         static MongoClient client = new MongoClient();
@@ -30,28 +27,84 @@ namespace medical_analysis_clinic.Scripts
         {
             var one = collection.Find(x => x.Name == name).FirstOrDefault();
         }
-        public static void ReplaceByName(string name, Client client)
+        // Найти по Пользователя по Id
+        public static void FindOneId(string id)
         {
-            collection.ReplaceOne(x => x.Name == name, client);
+            var one = collection.Find(x => x.Id == id).FirstOrDefault();
+            App.Current.Resources["Surname"] = one.Surname;
+            App.Current.Resources["Name"] = one.Name;
+            App.Current.Resources["Email"] = one.Email;
+            App.Current.Resources["Snils"] = one.SNILS;
+            App.Current.Resources["Birthday"] = one.Birthday;
         }
-        public static void FindAll()
+        // Редактирование личных данных
+        public static void ReplaceByName(string email, Client client)
         {
-            var list = collection.Find(x => true).ToList();
-            foreach (var item in list)
+            collection.ReplaceOne(x => x.Email == email, client);
+        }
+
+        // Вход в приложение
+        public static void Login(string email)
+        {
+            try
             {
-                if (name == item.Name)
+                var one = collection.Find(x => x.Email == email).FirstOrDefault();
+                if (email == one.Email)
                 {
-                    Auth.password =  item.Password;
+                    Auth.password = one.Password;
+                    Auth.IdLog = one.Id;
+                    Auth.email = one.Email;
+                }
+                else if (one.Email == null)
+                {
+
                 }
             }
+            catch
+            {
+
+            }
+            
         }
-        public static void FindAlreadyClients(string email)
+
+        // Регистариция(проверка на существующие акки)
+        public static void FindAlreadyClients(string email) 
         {
             var one = collection.Find(x => x.Email == email).FirstOrDefault();
             if(one == null)
             {
                 RegisterPage.AlreadyUser = true;
             }
+        }
+        public static void UpdateOne(string Name,string Time)
+        {
+            Time = Time.ToString();
+            Records records = new Records(Name, Time);
+            var update = Builders<Client>.Update.Push("Record", records);
+            collection.UpdateOne(x => x.Id == Auth.IdLog, update);
+        }
+        public static void FindAll()
+        {
+            var list = collection.Find(x => true).ToList();
+            foreach (var item in list)
+            {
+                if(item.Record.Count >= 1)
+                {
+                    var one = collection.Find(x => x.Id == item.Id).FirstOrDefault();
+                    var record = one.Record.ToList();
+                    foreach (var records in record)
+                    {
+                        WriteData(Convert.ToString(records));
+                    }
+                }
+            }
+        }
+
+        public static void WriteData(string Name)
+        {
+            string str = Name;
+            var result = Regex.Replace(str, @"[а-яА-ЯёЁ]", "");
+            s += result.TrimEnd();
         }
     }
 

@@ -198,12 +198,12 @@
     <Compile Include="Auth.xaml.cs">
       <DependentUpon>Auth.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Records.cs" />
     <Compile Include="RegisterPage.xaml.cs">
       <DependentUpon>RegisterPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Scripts\Client.cs" />
     <Compile Include="Scripts\ControllerDataBase.cs" />
-    <Compile Include="Scripts\Notify.cs" />
     <Compile Include="ServicesPage.xaml.cs">
       <DependentUpon>ServicesPage.xaml</DependentUpon>
     </Compile>

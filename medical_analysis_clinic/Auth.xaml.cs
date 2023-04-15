@@ -1,18 +1,8 @@
 ﻿using medical_analysis_clinic.Scripts;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using ToastNotifications.Messages;
 using ToastNotifications;
 using ToastNotifications.Lifetime;
@@ -30,7 +20,9 @@ namespace medical_analysis_clinic
             InitializeComponent();
         }
         public static string password;
+        public static string email;
         public static bool VerifyLog = false;
+        public static string IdLog;
         private void eventVisible_Click(object sender, RoutedEventArgs e)
         {
             var checkBox = sender as CheckBox;
@@ -71,18 +63,22 @@ namespace medical_analysis_clinic
             });
             if (LoginBox.Text != null)
             {
-                string passwordInput = pwdPasswordBox.Password;
-                ControllerDataBase.name = LoginBox.Text;
-                ControllerDataBase.FindAll();
-                if(pwdPasswordBox != null && password == passwordInput)
+                try
                 {
-                    NavigationService.Navigate(new ServicesPage());
-                    VerifyLog = true;
+                    string passwordInput = pwdPasswordBox.Password;
+                    //ControllerDataBase.name = LoginBox.Text;
+                    ControllerDataBase.Login(LoginBox.Text);
+                    if (pwdPasswordBox != null && password == passwordInput)
+                    {
+                        NavigationService.Navigate(new ServicesPage());
+                        VerifyLog = true;
+                    }
+                    else
+                    {
+                        notifier.ShowWarning("Неправильный Логин/Пароль!");
+                    }
                 }
-                else
-                {
-                    notifier.ShowWarning("Неправильный Логин/Пароль!");
-                }
+                catch(Exception ex) {}
             }
         }
     }

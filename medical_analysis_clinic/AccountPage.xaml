@@ -28,14 +28,14 @@
         </StackPanel>
 
         <StackPanel Visibility="Hidden" Grid.Column="1" Margin="0,0,10,-1" Grid.Row="1" x:Name="PersonalDataPanel">
-            <TextBox materialDesign:HintAssist.Hint="Фамилия" x:Name="Surname"/>
-            <TextBox materialDesign:HintAssist.Hint="Имя" x:Name="Name"/>
-            <TextBox materialDesign:HintAssist.Hint="Почта" x:Name="Email"/>
-            <TextBox materialDesign:HintAssist.Hint="Пол" x:Name="Gender"/>
+            <TextBox materialDesign:HintAssist.Hint="Фамилия" x:Name="SurnameBox"/>
+            <TextBox materialDesign:HintAssist.Hint="Имя" x:Name="NameBox"/>
+            <TextBox materialDesign:HintAssist.Hint="Почта" x:Name="EmailBox"/>
+            <TextBox materialDesign:HintAssist.Hint="Пол" x:Name="GenderBox"/>
             <TextBox materialDesign:HintAssist.Hint="Дата рождения" x:Name="Birthday"/>
-            <TextBox materialDesign:HintAssist.Hint="СНИЛС" x:Name="Snils"/>
-            <TextBox materialDesign:HintAssist.Hint="Текущий пароль" x:Name="CurrentPas"/>
-            <TextBox materialDesign:HintAssist.Hint="Новый пароль" x:Name="NewPas"/>
+            <TextBox materialDesign:HintAssist.Hint="СНИЛС" x:Name="SnilsBox"/>
+            <TextBox materialDesign:HintAssist.Hint="Текущий пароль" x:Name="CurrentPasBox"/>
+            <TextBox materialDesign:HintAssist.Hint="Новый пароль" x:Name="NewPasBox"/>
             <Button Content="Сохранить изменения" Click="SaveButton_Click"/>
         </StackPanel>
 
