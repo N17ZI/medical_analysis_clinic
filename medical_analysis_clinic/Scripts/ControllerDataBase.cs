@@ -12,6 +12,7 @@ namespace medical_analysis_clinic.Scripts
         public static string s;
         public static string name;
         public static string Email;
+        public static bool CanRead = false;
         static MongoClient client = new MongoClient();
         static IMongoDatabase database = client.GetDatabase("Clinic");
         static IMongoCollection<Client> collection = database.GetCollection<Client>("Client");
@@ -31,6 +32,7 @@ namespace medical_analysis_clinic.Scripts
         public static void FindOneId(string id)
         {
             var one = collection.Find(x => x.Id == id).FirstOrDefault();
+
             App.Current.Resources["Surname"] = one.Surname;
             App.Current.Resources["Name"] = one.Name;
             App.Current.Resources["Email"] = one.Email;
@@ -95,6 +97,7 @@ namespace medical_analysis_clinic.Scripts
                     foreach (var records in record)
                     {
                         WriteData(Convert.ToString(records));
+                        CanRead = true;
                     }
                 }
             }
@@ -102,8 +105,7 @@ namespace medical_analysis_clinic.Scripts
 
         public static void WriteData(string Name)
         {
-            string str = Name;
-            var result = Regex.Replace(str, @"[а-яА-ЯёЁ]", "");
+            var result = Regex.Replace(Name, @"[а-яА-ЯёЁ]", "");
             s += result.TrimEnd();
         }
     }

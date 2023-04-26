@@ -32,16 +32,12 @@
 
         <StackPanel Grid.Row="1" Background="DarkSeaGreen">
             <Expander Header="Обследование" Background="DarkOliveGreen">
-                <StackPanel>
-                    <Button HorizontalContentAlignment="Left" Background="ForestGreen">Анализ ДНК</Button>
-                    <Button HorizontalContentAlignment="Left" Background="ForestGreen">Анализ Кала</Button>
-                    <Button HorizontalContentAlignment="Left" Background="ForestGreen">Анализ Крови</Button>
-                    <Button HorizontalContentAlignment="Left" Background="ForestGreen">Анализ Мочи</Button>
-                    <Button HorizontalContentAlignment="Left" Background="ForestGreen">Анализ на гармоны</Button>
+                <StackPanel x:Name="StackPanelUp">
+                    
                 </StackPanel>
             </Expander>
             <Expander Header="УЗИ"  Background="DarkOliveGreen">
-                <StackPanel>
+                <StackPanel x:Name="StackPanelDown">
                     <Button HorizontalContentAlignment="Left" Background="ForestGreen">УЗИ сердца</Button>
                     <Button HorizontalContentAlignment="Left" Background="ForestGreen">УЗИ почек</Button>
                     <Button HorizontalContentAlignment="Left" Background="ForestGreen">УЗИ брюшной полости</Button>

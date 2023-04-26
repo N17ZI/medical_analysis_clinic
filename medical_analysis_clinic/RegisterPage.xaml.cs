@@ -1,18 +1,8 @@
 ﻿using medical_analysis_clinic.Scripts;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using ToastNotifications.Messages;
 using ToastNotifications;
 using ToastNotifications.Lifetime;
@@ -32,12 +22,12 @@ namespace medical_analysis_clinic
         public static bool AlreadyUser = false;
         private void BRegister_Click(object sender, RoutedEventArgs e)
         {
-            if(Password.Text == Password1.Text && (bool)Agree.IsChecked) // Проверка на совпадение паролей и нажатой галочки
+            if(Password.Text == Password1.Text && (bool)Agree.IsChecked && EmailBox!=null) // Проверка на совпадение паролей и нажатой галочки
             {
                 ControllerDataBase.FindAlreadyClients(EmailBox.Text); // Найти существующего пользователя по почте
                 if (AlreadyUser)
                 {
-                    CreateNewClient(SurnameBox.Text, Name.Text, EmailBox.Text, Password.Text); // Вызов метода
+                    CreateNewClient(SurnameBox.Text, Name.Text, EmailBox.Text,SNILS.Text,Birthday.SelectedDate.ToString(),Password.Text); // Вызов метода
                 }
                 else
                 {
@@ -61,11 +51,18 @@ namespace medical_analysis_clinic
                 
             }
         }
-        public void CreateNewClient(string Surname, string Name, string Email, string Password)
+        // string surname, string name, string email, int snils, string birthday,string password
+        public void CreateNewClient(string Surname, string Name, string Email, string Snils,string Birthday,string Password)
         {
-            Client client = new Client(Surname, Name, Email, Password);
-            ControllerDataBase.AddToDB(client);
-            NavigationService.Navigate(new Auth());
+            try
+            {
+                string[] arrBirthday2 = Birthday.Split(' ');
+                Client client = new Client(Surname, Name, Email, Convert.ToInt32(Snils), arrBirthday2[0], Password);
+                ControllerDataBase.AddToDB(client);
+                NavigationService.Navigate(new Auth());
+            }
+            catch(Exception ex) { }
+            
         }
     }
 }

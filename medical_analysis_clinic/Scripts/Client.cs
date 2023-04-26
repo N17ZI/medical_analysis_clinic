@@ -25,13 +25,22 @@ namespace medical_analysis_clinic.Scripts
             Birthday = birthday;
             Record = new List<Records>();
         }
+        public Client(string surname, string name, string email, int snils, string birthday,string password)
+        {
+            Surname = surname;
+            Name = name;
+            Email = email;
+            SNILS = snils;
+            Birthday = birthday;
+            Password = password;
+            Record = new List<Records>();
+        }
         [BsonId]
         [BsonIgnoreIfDefault]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set ; }
         public string Surname { get; set; }
         public string Name { get; set; }
-        public string MiddleName { get; set; }
         public int SNILS { get; set; }
         public string Birthday { get; set; }
         public string Email { get; set; }

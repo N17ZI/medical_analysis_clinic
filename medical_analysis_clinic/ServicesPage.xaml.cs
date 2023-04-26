@@ -1,5 +1,6 @@
 ﻿using medical_analysis_clinic.Scripts;
 using System;
+using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -12,21 +13,40 @@ using ToastNotifications.Position;
 
 namespace medical_analysis_clinic
 {
-    /// <summary>
-    /// Логика взаимодействия для ServicesPage.xaml
-    /// </summary>
     public partial class ServicesPage : Page
     {
         public ServicesPage()
         {
-            
             InitializeComponent();
             GenerateTextBlock();
             GenerateButtons();
+            GenerateTypesService(Typesofservice.Count());
+
         }
+        string[] Typesofservice = { "Анализ Кала", "Анализ ДНК", "Анализ на гармоны", "Анализ Мочи", "Анализ Крови" };
+        string currenttype = "Анализ Кала";
+        public void GenerateTypesService(int Count)
+        {
+            for(int a = 0;a<Count;a++)
+            { 
+                Button newBtn2 = new Button();
+                newBtn2.HorizontalContentAlignment = HorizontalAlignment.Left;
+                newBtn2.Name = "Button2" + i.ToString();
+                newBtn2.Content= Typesofservice[a];
+
+                newBtn2.Click += GetName;
+                StackPanelUp.Children.Add(newBtn2);
+            }
+        }
+
         string[] AnyDates = new string[8];
+        string[] Dates;
         string buttondata;
-        DateTime date1 = new DateTime(2023, 7, 20, 17, 0, 0);
+        DateTime date1 = new DateTime(2023, 7, 20, 8, 0, 0);
+        DateTime date2 = new DateTime(2023, 7, 20, 9, 20, 0);
+        DateTime date3 = new DateTime(2023, 7, 20, 10, 40, 0);
+        DateTime date4 = new DateTime(2023, 7, 20, 12, 0, 0);
+        DateTime date5 = new DateTime(2023, 7, 20, 13, 20, 0);
         int u = 0, i = 0;
         public void GenerateTextBlock()
         {
@@ -39,11 +59,9 @@ namespace medical_analysis_clinic
         public void GenerateButtons()
         {
             GetData();
-            string[] Dates = ControllerDataBase.s.Split(' ');
             FillTheArray();
-            
 
-            while (u < 8)
+            while (u < 8 && ControllerDataBase.CanRead == true)
             {
                 foreach (string str in AnyDates)
                 {
@@ -71,7 +89,7 @@ namespace medical_analysis_clinic
                 DatePick1.Children.Add(newBtn);
                 i++;
             }
-            
+
         }
 
         private void GetTicketForMed(object sender, RoutedEventArgs e)
@@ -97,14 +115,20 @@ namespace medical_analysis_clinic
 
                     cfg.Dispatcher = Application.Current.Dispatcher;
                 });
-                notifier.ShowSuccess($"Вы были записаны на Анализ кала в {btn.Content}");
+                notifier.ShowSuccess($"Вы были записаны на {currenttype} в {btn.Content}");
                 btn.Visibility = Visibility.Collapsed;
                 btn.IsEnabled= false;
 
-                ControllerDataBase.UpdateOne("Анализ Кала", btn.Content.ToString());
+                ControllerDataBase.UpdateOne(currenttype, btn.Content.ToString());
                 buttondata = btn.Content.ToString();
                 RefreshData();
             }
+        }
+
+        private void GetName(object sender, RoutedEventArgs e)
+        {
+            Button btn2 = (Button)sender;
+            currenttype = btn2.Content.ToString();
         }
         public void RefreshData()
         {
@@ -122,14 +146,20 @@ namespace medical_analysis_clinic
         }
         public void FillTheArray()
         {
-            for(int i = 0;i< 8;i++) {
+            for (int i = 0; i< 8; i++)
+            {
                 AnyDates[i] = date1.AddMinutes(10 * i).ToShortTimeString();
             }
         }
         private void GetData()
         {
             ControllerDataBase.FindAll();
-            ControllerDataBase.s = Regex.Replace(ControllerDataBase.s.TrimStart(), @"\s+", " ");
+            if (ControllerDataBase.CanRead == true)
+            {
+                ControllerDataBase.s = Regex.Replace(ControllerDataBase.s.TrimStart(), @"\s+", " ");
+                Dates = ControllerDataBase.s.Split(' ');
+            }
+            else { }
         }
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {

@@ -1,26 +1,20 @@
-﻿using MaterialDesignThemes.Wpf;
-using medical_analysis_clinic.Scripts;
+﻿using medical_analysis_clinic.Scripts;
 using MongoDB.Driver;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace medical_analysis_clinic
 {
-    /// <summary>
-    /// Логика взаимодействия для AccountPage.xaml
-    /// </summary>
     public partial class AccountPage : Page
     {
         public AccountPage()
         {
             InitializeComponent();
+            EmailBox.IsEnabled= false;
+            Birthday.IsEnabled= false;
         }
         static MongoClient client = new MongoClient();
         static IMongoDatabase database = client.GetDatabase("Clinic");
@@ -36,7 +30,7 @@ namespace medical_analysis_clinic
                 SurnameBox.Text = App.Current.Resources["Surname"].ToString();
                 NameBox.Text = App.Current.Resources["Name"].ToString();
                 EmailBox.Text = App.Current.Resources["Email"].ToString();
-                //Birthday.Text = App.Current.Resources["Birthday"].ToString();
+                Birthday.Text = App.Current.Resources["Birthday"].ToString();
                 SnilsBox.Text = App.Current.Resources["Snils"].ToString();
             }
             catch
@@ -99,8 +93,16 @@ namespace medical_analysis_clinic
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            Client client = new Client(SurnameBox.Text,NameBox.Text,EmailBox.Text, Convert.ToInt32(SnilsBox.Text), Birthday.Text);
-            ControllerDataBase.ReplaceByName(EmailBox.Text, client);
+            ControllerDataBase.FindOneId(Auth.IdLog);
+            if (CurrentPasBox!= null && CurrentPasBox.Text == Auth.password &&  NewPasBox!=null)
+            {
+                Client client = new Client(SurnameBox.Text, NameBox.Text, EmailBox.Text, Convert.ToInt32(SnilsBox.Text), Birthday.Text, NewPasBox.Text);
+                ControllerDataBase.ReplaceByName(EmailBox.Text, client);
+            }
+            else
+            {
+                MessageBox.Show("Неправильный пароль");
+            }
         }
     }
 }
