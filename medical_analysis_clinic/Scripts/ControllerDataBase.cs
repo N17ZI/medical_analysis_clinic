@@ -13,6 +13,7 @@ namespace medical_analysis_clinic.Scripts
         public static string name;
         public static string Email;
         public static bool CanRead = false;
+        public static bool CanSeeWindow = true;
         static MongoClient client = new MongoClient();
         static IMongoDatabase database = client.GetDatabase("Clinic");
         static IMongoCollection<Client> collection = database.GetCollection<Client>("Client");

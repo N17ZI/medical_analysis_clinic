@@ -20,6 +20,9 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Column="1" x:Name="TopText" Text="Персональные данные" FontSize="40" HorizontalAlignment="Center"/>
+        <StackPanel Background="DarkOliveGreen">
+            <Image MouseDown="Image_MouseDown" Source="/Pages/logo.png"></Image>
+        </StackPanel>
 
         <StackPanel Margin="0,0,0,8" Grid.Row="1">
             <Button Height="45" Click="PersonalData" Content="Личные данные"/>
@@ -31,7 +34,7 @@
             <TextBox materialDesign:HintAssist.Hint="Фамилия" x:Name="SurnameBox"/>
             <TextBox materialDesign:HintAssist.Hint="Имя" x:Name="NameBox"/>
             <TextBox materialDesign:HintAssist.Hint="Почта" x:Name="EmailBox"/>
-            
+
             <TextBox materialDesign:HintAssist.Hint="Дата рождения" x:Name="Birthday"/>
             <TextBox materialDesign:HintAssist.Hint="СНИЛС" x:Name="SnilsBox"/>
             <TextBox materialDesign:HintAssist.Hint="Текущий пароль" x:Name="CurrentPasBox"/>
@@ -40,7 +43,7 @@
         </StackPanel>
 
         <StackPanel x:Name="MyRecordsPanel" Grid.Column="1" Margin="0,0,0,-1" Grid.Row="1" Orientation="Horizontal">
-            
+
         </StackPanel>
     </Grid>
 </Page>

@@ -10,9 +10,6 @@ using ToastNotifications.Position;
 
 namespace medical_analysis_clinic
 {
-    /// <summary>
-    /// Логика взаимодействия для Auth.xaml
-    /// </summary>
     public partial class Auth : Page
     {
         public Auth()
@@ -61,12 +58,12 @@ namespace medical_analysis_clinic
 
                 cfg.Dispatcher = Application.Current.Dispatcher;
             });
-            if (LoginBox.Text != null)
+            if (LoginBox.Text != null && pwdPasswordBox.Password != null)
             {
                 try
                 {
                     string passwordInput = pwdPasswordBox.Password;
-                    //ControllerDataBase.name = LoginBox.Text;
+                    ControllerDataBase.name = LoginBox.Text;
                     ControllerDataBase.Login(LoginBox.Text);
                     if (pwdPasswordBox != null && password == passwordInput)
                     {

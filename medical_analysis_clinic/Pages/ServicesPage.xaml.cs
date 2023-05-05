@@ -1,6 +1,6 @@
 ﻿using medical_analysis_clinic.Scripts;
+using MongoDB.Driver;
 using System;
-using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -15,13 +15,16 @@ namespace medical_analysis_clinic
 {
     public partial class ServicesPage : Page
     {
+        static MongoClient client = new MongoClient();
+        static IMongoDatabase database = client.GetDatabase("Clinic");
+        static IMongoCollection<Client> collection = database.GetCollection<Client>("Client");
         public ServicesPage()
         {
             InitializeComponent();
+            GenerateTypesService(Typesofservice.Count()); 
             GenerateTextBlock();
+            GetData();
             GenerateButtons();
-            GenerateTypesService(Typesofservice.Count());
-
         }
         string[] Typesofservice = { "Анализ Кала", "Анализ ДНК", "Анализ на гармоны", "Анализ Мочи", "Анализ Крови" };
         string currenttype = "Анализ Кала";
@@ -58,38 +61,50 @@ namespace medical_analysis_clinic
         }
         public void GenerateButtons()
         {
-            GetData();
-            FillTheArray();
+            var uniqueNumbers =
+            from n in AnyDates
+            group n by n into nGroup
+            where nGroup.Count() == 1
+            select nGroup.Key;
 
-            while (u < 8 && ControllerDataBase.CanRead == true)
+            if (ControllerDataBase.CanRead == true)
             {
-                foreach (string str in AnyDates)
+                foreach (var item in uniqueNumbers)
                 {
-                    if (str == Dates[u])
-                    {
-                        AnyDates = AnyDates.Where(e => e != Dates[u]).ToArray();
-                    }
+                    Button newBtn = new Button();
+                    newBtn.FontSize = 16;
+                    newBtn.Height = 75;
+                    newBtn.Width = 75;
+                    newBtn.VerticalAlignment = VerticalAlignment.Top;
+                    newBtn.HorizontalContentAlignment = HorizontalAlignment.Center;
+                    newBtn.Name = "Button" + i.ToString();
+                    newBtn.Content = item;
+
+
+                    newBtn.Click += GetTicketForMed;
+                    DatePick1.Children.Add(newBtn);
+                    i++;
                 }
-                u++;
             }
-
-            while (i < AnyDates.Length)
+            else
             {
-                Button newBtn = new Button();
-                newBtn.FontSize = 16;
-                newBtn.Height = 75;
-                newBtn.Width = 75;
-                newBtn.VerticalAlignment = VerticalAlignment.Top;
-                newBtn.HorizontalContentAlignment = HorizontalAlignment.Center;
-                newBtn.Name = "Button" + i.ToString();
-                newBtn.Content = AnyDates[i];
+                foreach (var item in AnyDates)
+                {
+                    Button newBtn = new Button();
+                    newBtn.FontSize = 16;
+                    newBtn.Height = 75;
+                    newBtn.Width = 75;
+                    newBtn.VerticalAlignment = VerticalAlignment.Top;
+                    newBtn.HorizontalContentAlignment = HorizontalAlignment.Center;
+                    newBtn.Name = "Button" + i.ToString();
+                    newBtn.Content = item;
 
 
-                newBtn.Click += GetTicketForMed;
-                DatePick1.Children.Add(newBtn);
-                i++;
+                    newBtn.Click += GetTicketForMed;
+                    DatePick1.Children.Add(newBtn);
+                    i++;
+                }
             }
-
         }
 
         private void GetTicketForMed(object sender, RoutedEventArgs e)
@@ -121,7 +136,6 @@ namespace medical_analysis_clinic
 
                 ControllerDataBase.UpdateOne(currenttype, btn.Content.ToString());
                 buttondata = btn.Content.ToString();
-                RefreshData();
             }
         }
 
@@ -129,20 +143,7 @@ namespace medical_analysis_clinic
         {
             Button btn2 = (Button)sender;
             currenttype = btn2.Content.ToString();
-        }
-        public void RefreshData()
-        {
-            while (u < 8)
-            {
-                foreach (string str in AnyDates)
-                {
-                    if (str == buttondata)
-                    {
-                        AnyDates = AnyDates.Where(e => e != buttondata).ToArray();
-                    }
-                }
-                u++;
-            }
+            GetClientRecordsCheck(currenttype);
         }
         public void FillTheArray()
         {
@@ -150,8 +151,13 @@ namespace medical_analysis_clinic
             {
                 AnyDates[i] = date1.AddMinutes(10 * i).ToShortTimeString();
             }
+            if(ControllerDataBase.CanRead == true)
+            {
+                AnyDates = AnyDates.Concat(Dates).ToArray();
+            }
+            
         }
-        private void GetData()
+        public void GetData()
         {
             ControllerDataBase.FindAll();
             if (ControllerDataBase.CanRead == true)
@@ -160,8 +166,35 @@ namespace medical_analysis_clinic
                 Dates = ControllerDataBase.s.Split(' ');
             }
             else { }
+            FillTheArray();
         }
-        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        private void GetClientRecordsCheck(string name)
+        {
+            var one = collection.Find(x => x.Name == ControllerDataBase.name).FirstOrDefault();
+            int tabcount = one.Record.Count; 
+            TextBlock WarningText = new TextBlock();
+            WarningText.Text = $"У вас уже есть запись на {name},проверьте ее в своём личном кабинете.Нажав на логотип клиники.";
+            MainStackPanel.Children.Remove(WarningText);
+            for (int i = 0; i < tabcount ; i++)
+            {
+                if (one.Record[i].RecordsName == name)
+                {
+                    DatePick1.Visibility= Visibility.Collapsed;
+                    WarningText.TextAlignment = TextAlignment.Center;
+                    MainStackPanel.Children.Add(WarningText); 
+                    break;
+                }
+                else
+                {
+                    MainStackPanel.Children.Remove(WarningText);
+
+                    DatePick1.Visibility= Visibility.Visible;
+
+                }
+            }
+        }
+
+        private void Image_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             NavigationService.Navigate(new AccountPage());
         }

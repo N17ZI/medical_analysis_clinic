@@ -192,26 +192,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AccountPage.xaml.cs">
+    <Compile Include="Pages\AccountPage.xaml.cs">
       <DependentUpon>AccountPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Auth.xaml.cs">
+    <Compile Include="Pages\Auth.xaml.cs">
       <DependentUpon>Auth.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Records.cs" />
-    <Compile Include="RegisterPage.xaml.cs">
+    <Compile Include="Pages\RegisterPage.xaml.cs">
       <DependentUpon>RegisterPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Scripts\Client.cs" />
     <Compile Include="Scripts\ControllerDataBase.cs" />
-    <Compile Include="ServicesPage.xaml.cs">
+    <Compile Include="Pages\ServicesPage.xaml.cs">
       <DependentUpon>ServicesPage.xaml</DependentUpon>
     </Compile>
-    <Page Include="AccountPage.xaml">
+    <Page Include="Pages\AccountPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Auth.xaml">
+    <Page Include="Pages\Auth.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -227,11 +227,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="RegisterPage.xaml">
+    <Page Include="Pages\RegisterPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ServicesPage.xaml">
+    <Page Include="Pages\ServicesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -266,6 +266,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Pages\logo.png" />
     <Content Include="mongocrypt.dll" />
   </ItemGroup>
   <ItemGroup>

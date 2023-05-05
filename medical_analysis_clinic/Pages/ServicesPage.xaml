@@ -8,7 +8,7 @@
       d:DesignHeight="588" d:DesignWidth="922"
       Title="ServicesPage">
 
-    <Grid Background="GhostWhite">
+    <Grid Background="NavajoWhite">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="500"/>
@@ -18,15 +18,10 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Column="1" Text="Все услуги" FontSize="50" HorizontalAlignment="Center" Width="250" />
-        <StackPanel Background="LightSeaGreen">
-            <TextBlock Name="TextBlockWithHyperlink" FontSize="22">
-            <Hyperlink FontSize="22"
-            Click="Hyperlink_Click" TextDecorations="None">
-            Главная
-        </Hyperlink>
-         - Все услуги
-            </TextBlock>
+        <TextBlock Name="TopText" 
+                  Background="DarkSeaGreen" TextAlignment="Center" Grid.Column="1" Text="Все услуги" FontSize="50" HorizontalAlignment="Center" Width="672" />
+        <StackPanel Background="DarkOliveGreen">
+            <Image MouseDown="Image_MouseDown" Source="/Pages/logo.png"></Image>
         </StackPanel>
 
 
@@ -47,7 +42,7 @@
             </Expander>
         </StackPanel>
 
-        <StackPanel Grid.Column="1" Grid.Row="1"  Orientation="Horizontal" VerticalAlignment="Center" Height="500" HorizontalAlignment="Center" Width="672">
+        <StackPanel Name="MainStackPanel" Grid.Column="1" Grid.Row="1"  Orientation="Horizontal" VerticalAlignment="Center" Height="500" HorizontalAlignment="Center" Width="672">
             <StackPanel x:Name="DatePick1"  Height="148" Width="665" Orientation="Horizontal" Margin="0,-290,0,0"/>
             <WrapPanel Width="667" x:Name="DatePick" Height="27" Orientation="Horizontal" Margin="-660,-474,0,0"/>
         </StackPanel>

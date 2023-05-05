@@ -32,11 +32,7 @@ namespace medical_analysis_clinic
                 EmailBox.Text = App.Current.Resources["Email"].ToString();
                 Birthday.Text = App.Current.Resources["Birthday"].ToString();
                 SnilsBox.Text = App.Current.Resources["Snils"].ToString();
-            }
-            catch
-            {
-
-            }
+            } catch{}
         }
         private void MyRecords(object sender, RoutedEventArgs e)
         {
@@ -88,6 +84,7 @@ namespace medical_analysis_clinic
         private void ExitFromAcc(object sender, RoutedEventArgs e)
         {
             Auth.VerifyLog = false;
+            //System.Windows.Application.Current.Shutdown();
             NavigationService.Navigate(new Auth());
         }
 
@@ -103,6 +100,11 @@ namespace medical_analysis_clinic
             {
                 MessageBox.Show("Неправильный пароль");
             }
+        }
+
+        private void Image_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new ServicesPage());
         }
     }
 }

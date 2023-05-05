@@ -10,9 +10,6 @@ using ToastNotifications.Position;
 
 namespace medical_analysis_clinic
 {
-    /// <summary>
-    /// Логика взаимодействия для RegisterPage.xaml
-    /// </summary>
     public partial class RegisterPage : Page
     {
         public RegisterPage()
