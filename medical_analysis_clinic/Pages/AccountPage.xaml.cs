@@ -99,15 +99,23 @@ namespace medical_analysis_clinic
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             ControllerDataBase.FindOneId(Auth.IdLog);
-            if (CurrentPasBox!= null && CurrentPasBox.Text == Auth.password &&  NewPasBox!=null)
+            if (MessageBox.Show($"Вы уверены, что хотите отменить данные своей учетной записи?"
+                + "При изменении предстоящие записи будут отменены!",
+                    "Подтверждение",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                Client client = new Client(SurnameBox.Text, NameBox.Text, EmailBox.Text, Convert.ToInt32(SnilsBox.Text), Birthday.Text, NewPasBox.Text);
-                ControllerDataBase.ReplaceByName(EmailBox.Text, client);
+                if (CurrentPasBox!= null && CurrentPasBox.Text == Auth.password &&  NewPasBox!=null)
+                {
+                    Client client = new Client(SurnameBox.Text, NameBox.Text, EmailBox.Text, Convert.ToInt32(SnilsBox.Text), Birthday.Text, NewPasBox.Text);
+                    ControllerDataBase.ReplaceByName(EmailBox.Text, client);
+                }
+                else
+                {
+                    MessageBox.Show("Неправильный пароль");
+                }
             }
-            else
-            {
-                MessageBox.Show("Неправильный пароль");
-            }
+            
         }
 
         private void Image_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)

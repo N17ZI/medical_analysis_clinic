@@ -184,7 +184,8 @@ namespace medical_analysis_clinic
             var one = collection.Find(x => x.Name == ControllerDataBase.name).FirstOrDefault();
             int tabcount = one.Record.Count; 
             TextBlock WarningText = new TextBlock();
-            WarningText.Text = $"У вас уже есть запись на {name},проверьте ее в своём личном кабинете.Нажав на логотип клиники.";
+            WarningText.Text = $"У вас уже есть запись на {name},проверьте ее в своём личном кабинете.Нажав на логотип.";
+            WarningText.FontSize= 15;
             MainStackPanel.Children.Remove(WarningText);
             for (int i = 0; i < tabcount ; i++)
             {
