@@ -31,15 +31,6 @@
                     
                 </StackPanel>
             </Expander>
-            <Expander Header="УЗИ"  Background="DarkOliveGreen">
-                <StackPanel x:Name="StackPanelDown">
-                    <Button HorizontalContentAlignment="Left" Background="ForestGreen">УЗИ сердца</Button>
-                    <Button HorizontalContentAlignment="Left" Background="ForestGreen">УЗИ почек</Button>
-                    <Button HorizontalContentAlignment="Left" Background="ForestGreen">УЗИ брюшной полости</Button>
-                    <Button HorizontalContentAlignment="Left" Background="ForestGreen">УЗИ простаты</Button>
-                    <Button HorizontalContentAlignment="Left" Background="ForestGreen">УЗИ мочевого пузыря</Button>
-                </StackPanel>
-            </Expander>
         </StackPanel>
 
         <StackPanel Name="MainStackPanel" Grid.Column="1" Grid.Row="1"  Orientation="Horizontal" VerticalAlignment="Center" Height="500" HorizontalAlignment="Center" Width="672">

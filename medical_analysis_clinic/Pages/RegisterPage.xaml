@@ -19,13 +19,14 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        <Image Source="/Pages/logo.png" Grid.ColumnSpan="3" Margin="307,-12,307,12"/>
         <TextBlock Margin="10,52,46,124" FontSize="11" Grid.Row="2" Grid.Column="1">Я согласен на <Hyperlink>обработку персональных данных</Hyperlink></TextBlock>
         <CheckBox Grid.Column="1" Margin="267,47,10,119" Grid.Row="2" Name="Agree" RenderTransformOrigin="0.319,0.522"/>
         <DatePicker Margin="10,98,10,61" Grid.Row="1" Grid.Column="1" x:Name="Birthday" materialDesign:HintAssist.Hint="День рождения"></DatePicker>
         <Button Margin="10,77,10,68" Grid.Row="2" Content="Зарегистрироваться!" Grid.Column="1" Click="BRegister_Click" Background="GreenYellow"/>
         <TextBox Margin="10,10,10,149" Grid.Row="2" Grid.Column="1" x:Name="Password" materialDesign:HintAssist.Hint="Подтверждение пароля"/>
         <TextBox Margin="10,149,10,10" Grid.Row="1" Grid.Column="1" x:Name="Password1" materialDesign:HintAssist.Hint="Пароль"/>
-        <TextBox Margin="10,50,10,108" Grid.Row="1" Grid.Column="1" x:Name="SNILS" materialDesign:HintAssist.Hint="СНИЛС" MaxLength="12"/>
+        <TextBox Margin="10,50,10,108" Grid.Row="1" Grid.Column="1" x:Name="SNILS" materialDesign:HintAssist.Hint="СНИЛС" MaxLength="9"/>
         <TextBox Margin="10,0,10,158" Grid.Row="1" Grid.Column="1" x:Name="EmailBox" materialDesign:HintAssist.Hint="Электронная почта"/>
         <TextBox Margin="10,148,172,10" Grid.Column="1" x:Name="SurnameBox" materialDesign:HintAssist.Hint="Фамилия"/>
         <TextBox Margin="173,148,10,10" Grid.Column="1" x:Name="Name" materialDesign:HintAssist.Hint="Имя"/>

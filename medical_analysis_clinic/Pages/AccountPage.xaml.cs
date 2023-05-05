@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
+using ToastNotifications;
 
 namespace medical_analysis_clinic
 {
@@ -61,22 +62,29 @@ namespace medical_analysis_clinic
         private async void DeleteRecord(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
-            btn.Visibility = Visibility.Collapsed;
-
-            string str = btn.Content.ToString();
-            char[] delimiters = new char[] { '1', '2', '3', '4', '5', '6','7','8','9','0',':' };
-            string[] parts = str.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
-            str = "";
-            foreach (string s in parts)
+            if (MessageBox.Show($"Вы уверены, что хотите отменить запись на {btn.Content}?",
+                    "Подтверждение",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                str += s.TrimEnd();
-            }
+                btn.Visibility = Visibility.Collapsed;
 
-            var update = Builders<Client>.Update.PullFilter(p => p.Record,
-                                                f => f.RecordsName == str);
-            var result = collection
-                .FindOneAndUpdateAsync(p => p.Id == Auth.IdLog, update).Result;
-            this.NavigationService.Refresh();
+                string str = btn.Content.ToString();
+                char[] delimiters = new char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', ':' };
+                string[] parts = str.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+                str = "";
+                foreach (string s in parts)
+                {
+                    str += s.TrimEnd();
+                }
+
+                var update = Builders<Client>.Update.PullFilter(p => p.Record,
+                                                    f => f.RecordsName == str);
+                var result = collection
+                    .FindOneAndUpdateAsync(p => p.Id == Auth.IdLog, update).Result;
+                this.NavigationService.Refresh();
+            }
+            
         }
 
 

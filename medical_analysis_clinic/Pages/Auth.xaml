@@ -20,6 +20,7 @@
             <ColumnDefinition Width="450"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        <Image Source="/Pages/logo.png" Margin="0,41,0,228" Grid.Column="1" Grid.RowSpan="2"/>
         <Frame Name="mainFrame"  NavigationUIVisibility="Hidden" Height="588" Width="922" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
         <TextBox Margin="28,28,28,165" Grid.Column="1" Grid.Row="1" materialDesign:HintAssist.Hint="Логин" x:Name="LoginBox"/>
         <TextBox Grid.Row="1" Margin="0,114,0,87" Visibility="Hidden" Name="pwdTextBox" Grid.Column="1" materialDesign:HintAssist.Hint="Пароль" HorizontalAlignment="Center" Width="394"/>
