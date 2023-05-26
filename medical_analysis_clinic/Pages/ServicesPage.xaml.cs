@@ -182,26 +182,30 @@ namespace medical_analysis_clinic
         private void GetClientRecordsCheck(string name)
         {
             var one = collection.Find(x => x.Name == ControllerDataBase.name).FirstOrDefault();
-            int tabcount = one.Record.Count; 
-            TextBlock WarningText = new TextBlock();
-            WarningText.Text = $"У вас уже есть запись на {name},проверьте ее в своём личном кабинете.Нажав на логотип.";
-            WarningText.FontSize= 15;
-            MainStackPanel.Children.Remove(WarningText);
-            for (int i = 0; i < tabcount ; i++)
+            if(one != null)
             {
-                if (one.Record[i].RecordsName == name)
+                int tabcount = one.Record.Count;
+                TextBlock WarningText = new TextBlock();
+                WarningText.Text = $"У вас уже есть запись на {name},проверьте ее в своём личном кабинете.Нажав на логотип.";
+                WarningText.FontSize = 15;
+                MainStackPanel.Children.Remove(WarningText);
+                for (int i = 0; i < tabcount; i++)
                 {
-                    DatePick1.Visibility= Visibility.Collapsed;
-                    WarningText.TextAlignment = TextAlignment.Center;
-                    MainStackPanel.Children.Add(WarningText); 
-                    break;
-                }
-                else
-                {
-                    MainStackPanel.Children.Remove(WarningText);
-                    DatePick1.Visibility= Visibility.Visible;
+                    if (one.Record[i].RecordsName == name)
+                    {
+                        DatePick1.Visibility = Visibility.Collapsed;
+                        WarningText.TextAlignment = TextAlignment.Center;
+                        MainStackPanel.Children.Add(WarningText);
+                        break;
+                    }
+                    else
+                    {
+                        MainStackPanel.Children.Remove(WarningText);
+                        DatePick1.Visibility = Visibility.Visible;
+                    }
                 }
             }
+            
         }
 
         private void Image_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
